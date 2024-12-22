@@ -1,4 +1,4 @@
-namespace Matt.Auditing;
+namespace Matt.SharedKernel.Auditing;
 
 /// <summary>
 /// This interface can be implemented to store deletion information (who delete and when deleted).

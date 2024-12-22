@@ -1,6 +1,6 @@
-﻿using Matt.AutoDI;
-using Matt.SharedKernel.Domain.Primitives.Abstractions;
+﻿using Matt.SharedKernel.Domain.Primitives.Abstractions;
 using Matt.SharedKernel.Domain.Specifications.Interfaces;
+using IScoped = Matt.SharedKernel.DependencyInjections.IScoped;
 
 namespace Matt.SharedKernel.Domain.Interfaces.Repositories;
 

@@ -1,4 +1,4 @@
-namespace Matt.ResultObject;
+namespace Matt.SharedKernel.Results;
 
 public class Result<T> : ResultBase, IHasErrorDetail where T : notnull
 {

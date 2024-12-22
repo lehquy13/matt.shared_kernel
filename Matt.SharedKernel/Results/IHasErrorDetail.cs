@@ -1,4 +1,4 @@
-namespace Matt.ResultObject;
+namespace Matt.SharedKernel.Results;
 
 internal interface IHasErrorDetail
 {

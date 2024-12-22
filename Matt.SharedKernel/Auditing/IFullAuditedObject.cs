@@ -1,4 +1,4 @@
-namespace Matt.Auditing;
+namespace Matt.SharedKernel.Auditing;
 
 /// <summary>
 /// Adds user navigation properties to <see cref="IFullAuditedObject"/> interface for user.

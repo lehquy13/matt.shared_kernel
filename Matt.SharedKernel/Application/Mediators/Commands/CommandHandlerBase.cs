@@ -1,5 +1,5 @@
-﻿using Matt.ResultObject;
-using Matt.SharedKernel.Domain.Interfaces;
+﻿using Matt.SharedKernel.Domain.Interfaces;
+using Matt.SharedKernel.Results;
 using MediatR;
 
 namespace Matt.SharedKernel.Application.Mediators.Commands;

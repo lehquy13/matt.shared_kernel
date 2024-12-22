@@ -1,4 +1,4 @@
-namespace Matt.Auditing;
+namespace Matt.SharedKernel.Auditing;
 
 /// <summary>
 /// This interface can be implemented to store modification information (who and when modified lastly).

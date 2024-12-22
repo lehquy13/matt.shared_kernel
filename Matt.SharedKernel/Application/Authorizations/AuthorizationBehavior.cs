@@ -36,15 +36,6 @@ public class AuthorizationBehavior<TRequest, TResponse>(
             .SelectMany(authorizationAttribute => authorizationAttribute.Policies?.Split(',') ?? [])
             .ToList();
 
-        AuthorizeCurrentUser(requiredRoles, requiredPermissions);
-
-        return await next();
-    }
-
-    private void AuthorizeCurrentUser(
-        IEnumerable<string> requiredRoles,
-        IEnumerable<string> requiredPermissions)
-    {
         // Check if the current user has the required permissions 
         if (requiredPermissions.Except(currentUserService.Permissions).Any())
         {
@@ -56,5 +47,7 @@ public class AuthorizationBehavior<TRequest, TResponse>(
         {
             throw new UnauthorizedException("User is missing required roles for taking this action");
         }
+
+        return await next();
     }
 }

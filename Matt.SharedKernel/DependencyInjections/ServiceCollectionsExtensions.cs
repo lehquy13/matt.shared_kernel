@@ -1,18 +1,12 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Matt.AutoDI;
+namespace Matt.SharedKernel.DependencyInjections;
 
 public static class ServiceCollectionsExtensions
 {
     #region Extensions
 
-    /// <summary>
-    /// Registers all items for given assemblies
-    /// </summary>
-    /// <param name="services"></param>
-    /// <param name="assemblies"></param>
-    /// <returns></returns>
     public static IServiceCollection AddServiced(this IServiceCollection services, params Assembly[] assemblies)
     {
         var compatibleAssemblies = FilterAssemblies(assemblies);
@@ -29,30 +23,10 @@ public static class ServiceCollectionsExtensions
 
             var lifetime = GetLifetime(serviceToRegister);
 
-            if (typeof(IHasImplementationFactory).IsAssignableFrom(serviceToRegister))
-            {
-                RegisterWithImplementationFactory(services, implementationType, lifetime);
-            }
-            else
-            {
-                RegisterWithTypes(services, serviceType, implementationType, lifetime);
-            }
+            RegisterWithTypes(services, serviceType, implementationType, lifetime);
         }
 
         return services;
-    }
-
-
-    /// <summary>
-    /// Registers all items for calling assembly
-    /// </summary>
-    /// <param name="services"></param>
-    /// <returns></returns>
-    public static IServiceCollection AddServicedForCallingAssembly(this IServiceCollection services)
-    {
-        var callingAssembly = Assembly.GetCallingAssembly();
-
-        return AddServiced(services, callingAssembly);
     }
 
     #endregion
@@ -63,26 +37,6 @@ public static class ServiceCollectionsExtensions
         ServiceLifetime lifetime)
     {
         var descriptor = new ServiceDescriptor(serviceType, implementationType, lifetime);
-
-        services.Add(descriptor);
-    }
-
-    private static void RegisterWithImplementationFactory(IServiceCollection services, Type implementationType,
-        ServiceLifetime lifetime)
-    {
-        var classInstance = Activator.CreateInstance(implementationType);
-        var factory = implementationType
-            .GetMethod(nameof(IHasImplementationFactory.GetFactory));
-        if (factory is null)
-            throw new InvalidOperationException($"Factory method is not defined for {implementationType.FullName}");
-
-        var factory1 = factory.Invoke(classInstance, null);
-
-        if (factory1 is null)
-            throw new InvalidOperationException($"Factory method returned null for {implementationType.FullName}");
-
-        var factoryDelegate = (Func<IServiceProvider, object>)factory1;
-        var descriptor = new ServiceDescriptor(implementationType, factoryDelegate, lifetime);
 
         services.Add(descriptor);
     }
@@ -103,16 +57,6 @@ public static class ServiceCollectionsExtensions
 
             return (genericInterface ?? serviceToRegister,
                 serviceToRegister);
-        }
-
-        if (serviceToRegister.IsGenericType && typeof(IServiced).IsAssignableFrom(typeof(IOpenGenericService<>)))
-        {
-            genericInterface = serviceToRegister.GetInterfaces()
-                .LastOrDefault(x => x.Name == typeof(IOpenGenericService<>).Name);
-
-            return (genericInterface != null
-                ? genericInterface.GetGenericArguments()[0].GetGenericTypeDefinition()
-                : serviceToRegister, serviceToRegister.GetGenericTypeDefinition());
         }
 
         //Generic type like IRepository<T>, IReadOnlyRepository<T>

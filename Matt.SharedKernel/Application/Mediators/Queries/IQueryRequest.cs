@@ -1,4 +1,4 @@
-﻿using Matt.ResultObject;
+﻿using Matt.SharedKernel.Results;
 using MediatR;
 
 namespace Matt.SharedKernel.Application.Mediators.Queries;

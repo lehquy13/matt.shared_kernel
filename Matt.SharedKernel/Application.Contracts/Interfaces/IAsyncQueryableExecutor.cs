@@ -1,4 +1,4 @@
-﻿using Matt.AutoDI;
+﻿using IScoped = Matt.SharedKernel.DependencyInjections.IScoped;
 
 namespace Matt.SharedKernel.Application.Contracts.Interfaces;
 

@@ -1,4 +1,4 @@
-namespace Matt.Paginated;
+namespace Matt.SharedKernel.Paginations;
 
 public interface IHasTotalItemsCount
 {

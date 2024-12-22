@@ -1,4 +1,4 @@
-namespace Matt.Auditing;
+namespace Matt.SharedKernel.Auditing;
 
 public interface ISoftDelete
 {

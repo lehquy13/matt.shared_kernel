@@ -1,4 +1,4 @@
-namespace Matt.Auditing;
+namespace Matt.SharedKernel.Auditing;
 
 /// <summary>
 /// This interface can be implemented to add standard auditing properties to a class.

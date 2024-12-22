@@ -1,4 +1,4 @@
-﻿using Matt.AutoDI;
+﻿using ITransient = Matt.SharedKernel.DependencyInjections.ITransient;
 
 namespace Matt.SharedKernel.Domain.Interfaces;
 

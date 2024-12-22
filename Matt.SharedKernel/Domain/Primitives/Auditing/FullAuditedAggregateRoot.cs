@@ -1,4 +1,4 @@
-﻿using Matt.Auditing;
+﻿using Matt.SharedKernel.Auditing;
 
 namespace Matt.SharedKernel.Domain.Primitives.Auditing;
 

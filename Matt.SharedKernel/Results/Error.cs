@@ -1,4 +1,4 @@
-﻿namespace Matt.ResultObject;
+﻿namespace Matt.SharedKernel.Results;
 
 public record Error(string Code, string Description)
 {
