@@ -6,7 +6,6 @@ public abstract class AuditedEntityDto<TId>
     : CreationAuditedEntityDto<TId>, IAuditedObject
     where TId : notnull
 {
-    //Modifications
     public DateTime? LastModificationTime { get; set; }
 
     public string? LastModifierId { get; set; }

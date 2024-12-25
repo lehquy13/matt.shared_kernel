@@ -10,7 +10,11 @@
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/lehquy13/matt.shared_kernel</RepositoryUrl>
         <PackageTags>ddd</PackageTags>
-        <Version>1.1.0</Version>
+        <Version>1.1.0.1</Version>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
